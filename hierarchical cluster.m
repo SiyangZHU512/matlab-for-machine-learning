@@ -10,16 +10,16 @@ xlabel('length')
 ylabel('width')
 title('classification')
 set(gca,'fontsize',12)
-%% 层次聚类
+%% 
 data=[meas(:,3),meas(:,4)]
 datalink=linkage(data,'average','euclidean')
 figure(2)
 dendrogram(datalink,10)
-title('树状图（10节点）')
-%图一只是在所有结点当中截取了最上层的10个节点所产生的图像。
+title('Tree diagram (10 nodes)')
+%
 figure(3)
 dendrogram(datalink,0)
-title('树状图（所有节点）')
+title('Tree diagram (all the nodes)')
 %%
 T1=cluster(datalink,'cutoff',1.5,'criterion','distance')
 cen=[mean(data(T1==1,:));...
@@ -64,5 +64,14 @@ xlabel('length')
 ylabel('width')
 title('classification')
 set(gca,'fontsize',12)
-%%混淆矩阵
-hh=confusionmat(newT2,speciesNum)
+%%娣锋穯鐭╅樀
+figure(6)
+cm=confusionchart(speciesNum,newT1)
+cm.Title='confusion matrix for test data'
+cm.ColumnSummary='column-normalized'
+cm.RowSummary='row-normalized'
+figure(7)
+cm=confusionchart(speciesNum,newT2)
+cm.Title='confusion matrix for test data'
+cm.ColumnSummary='column-normalized'
+cm.RowSummary='row-normalized'
