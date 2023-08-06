@@ -1,3 +1,5 @@
+clc
+clear all
 A=xlsread('D:\桌面\logit.xlsx',1,'A1:C4001')
 treat=A(:,1)
 edu=A(:,2)
