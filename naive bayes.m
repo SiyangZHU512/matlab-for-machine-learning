@@ -1,12 +1,14 @@
-A=xlsread('D:\×ÀÃæ\logit.xlsx',1,'A1:C4001')
+clc
+clear all
+A=xlsread('D:\æ¡Œé¢\logit.xlsx',1,'A1:C4001')
 treat=A(:,1)
 edu=A(:,2)
 income=A(:,3)
 figure(1)
 gscatter(edu,income,treat,'kk','xo')
-xlabel('ÊÜ½ÌÓıÄêÏŞ','fontsize',12)
-ylabel('ÊÕÈëË®Æ½×´¿ö','fontsize',12)
-title('Êı¾İ¿ÉÊÓ»¯','fontsize',12)
+xlabel('education level','fontsize',12)
+ylabel('income','fontsize',12)
+title('data visualization for prediction','fontsize',12)
 set(gca,'linewidth',2)
 X=[edu,income]
 rand_num=randperm(300)
@@ -14,20 +16,26 @@ X_train=X(rand_num(1:200),:)
 Y_train=treat(rand_num(1:200),:)
 X_test=X(rand_num(101:300),:)
 Y_test=treat(rand_num(101:300),:)
-%ÆÓËØ±´Ò¶Ë¹
+%æœ´ç´ è´å¶æ–¯
 Nb=fitcnb(X_train,Y_train)
 Y_Nb=Nb.predict(X_test)
 disp('result')
 C_knn=confusionmat(Y_test,Y_Nb)
 error_ratio=sum(abs(Y_test-Y_Nb))
-figure(3)
+figure(2)
 plot(1:length(Y_test),Y_test,'r-*')
 hold on
 plot(1:length(Y_test),Y_Nb,'b:o')
 grid on
-legend('ÕæÊµÀà±ğ','Ô¤²âÀà±ğ')
-xlabel('²âÊÔ¼¯Ñù±¾±àºÅ')
-ylabel('²âÊÔ¼¯Ñù±¾Àà±ğ')
-string = {'²âÊÔ¼¯ÆÓËØ±´Ò¶Ë¹Ëã·¨Ô¤²â½á¹û¶Ô±È';
+legend('real class','predict class')
+xlabel('order')
+ylabel('class')
+string = {'result of naive bayes method';
           ['estimation value error= ' num2str(error_ratio) '%']};
 title(string)
+
+figure(3)
+cm=confusionchart(Y_test,Y_Nb)
+cm.Title='confusion matrix for test data'
+cm.ColumnSummary='column-normalized'
+cm.RowSummary='row-normalized'
