@@ -1,5 +1,5 @@
 clear all
-A=xlsread('D:\×ÀÃæ\ÈÈÍ¼Ïñ.xlsx',1,'A1:K4001')
+A=xlsread('D:\æ¡Œé¢\çƒ­å›¾åƒ.xlsx',1,'A1:K4001')
 covmat=corrcoef(A)
 figure(1)
 imagesc(covmat)
