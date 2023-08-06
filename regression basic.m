@@ -1,6 +1,7 @@
 %%
 clear all
-A=xlsread('D:\×ÀÃæ\ÈÈÍ¼Ïñ.xlsx',1,'A1:K4001')
+clc
+A=xlsread('D:\æ¡Œé¢\çƒ­å›¾åƒ.xlsx',1,'A1:K4001')
 covmat=corrcoef(A)
 figure
 imagesc(covmat)
@@ -12,7 +13,7 @@ plot(A1,A2,'*')
 m2=LinearModel.fit(A1,A2)
 X=[ones(4000,1),A1];
 [b,bint,r,rint,s]=regress(A2,X)
-%b:coefficient bint£ºconfident interval for coefficient r£ºresidual rint£ºCI for residual
+%b:coefficient bintÂ£Âºconfident interval for coefficient rÂ£Âºresidual rintÂ£ÂºCI for residual
 %model check%
 figure(1)
 subplot(2,2,1)
